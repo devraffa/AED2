@@ -626,19 +626,8 @@ int main()
     adicionarPaciente(&filaPacientes, pacientes[0]);
 
     exibirFila(&filaPacientes);
-    /*
-    printf("heap doideira\n");
-    construir_heap(pacientes,numPacientes);
-    print_heap(pacientes,numPacientes);
-    */
 
-    // printf("\n%d %d %d",numMedicos,numPacientes,numSalas);
     int qtd_consultas = 0;
-    // gerar_consulta(Paciente *pacientes, Medico *medicos, Sala *salas, int num_pacientes, int num_salas,
-    //                int num_medicos, Consulta *consultas, int *qtd_consultas, Fila *filaretorno) {
-
-    // gerar_consulta(pacientes,medicos,salas,numPacientes,numSalas,numMedicos,consulta,&qtd_consultas,&filaPacientes);
-    //  Fechar o arquivo
 
     bubble_sort(pacientes, numPacientes);
     gerar_consulta(pacientes, medicos, salas, numPacientes, numSalas, numMedicos, consulta, &qtd_consultas, &filaPacientes);
