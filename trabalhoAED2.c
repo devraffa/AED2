@@ -61,6 +61,7 @@ typedef struct
 } Fila;
 // Calcular prioridade de um paciente
 
+// inicializa uma nova fila
 void inicializarFila(Fila *fila)
 {
     fila->inicio = 0;
@@ -68,16 +69,19 @@ void inicializarFila(Fila *fila)
     fila->tamanho = 0;
 }
 
+//verifica de fila esta vazia ou não
 int filaVazia(Fila *fila)
 {
     return fila->tamanho == 0;
 }
 
+//verifica se a fila esta cheia
 int filaCheia(Fila *fila)
 {
     return fila->tamanho == TAMANHO_FILA;
 }
 
+// adiciona paciente na fila
 void adicionarPaciente(Fila *fila, Paciente paciente)
 {
     if (filaCheia(fila))
@@ -90,6 +94,7 @@ void adicionarPaciente(Fila *fila, Paciente paciente)
     fila->tamanho++;                            // Incrementa o tamanho da fila
 }
 
+// remove pacientes da fila
 int removerPaciente(Fila *fila)
 {
     if (filaVazia(fila))
@@ -122,6 +127,8 @@ void exibirFila(Fila *fila)
     }
 }
 
+
+//função para auxiliar a trocar elementos
 void trocar(Paciente *a, Paciente *b)
 {
     Paciente temp = *a;
@@ -129,7 +136,7 @@ void trocar(Paciente *a, Paciente *b)
     *b = temp;
 }
 
-// Fun  o para ajustar a heap subindo o elemento
+// Função para ajustar a heap subindo o elemento
 void subir_heap(Paciente *h, int i)
 {
     if (i <= 0)
@@ -144,7 +151,7 @@ void subir_heap(Paciente *h, int i)
     }
 }
 
-// Fun  o para ajustar a heap descendo o elemento
+// Função para ajustar a heap descendo o elemento
 void descer_heap(int n, int i, Paciente *h)
 {
     int maior = i;             // Inicializa como raiz
@@ -190,6 +197,7 @@ void remocao_heap(Paciente *h, int *tam)
     descer_heap(*tam, 0, h);
 }
 
+//ufnção para construir a heap
 void construir_heap(Paciente *h, int tam)
 {
     for (int i = 1; i < tam; i++)
@@ -198,6 +206,8 @@ void construir_heap(Paciente *h, int tam)
     }
 }
 
+
+// printar a heap
 void print_heap(Paciente *h, int tam)
 {
     for (int i = 0; i < tam; i++)
@@ -210,6 +220,7 @@ void calcularPrioridade(Paciente *paciente)
 {
     paciente->prioridade = rand() % 6; // Gera n mero entre 0 e 5
 }
+
 
 int lerPacientes(FILE *arquivo, Paciente *pacientes, int totalPacientes)
 {
@@ -396,11 +407,13 @@ int lerSalas(FILE *arquivo, Sala *salas, int totalSalas)
     return i;
 }
 
+//função que vai verificar se ocorre as faltas ou não
+
 void verificarFalta(Paciente *paciente, Paciente *h, int *tam) {
-    // Gera um n�mero aleat�rio entre 1 e 100
+    // Gera um numero entre 1 e 100
 
     if (paciente == NULL || h == NULL || *tam <= 0) {
-        printf("Erro: Paciente ou lista de pacientes inv�lida.\n");
+        printf("Erro: Paciente ou lista de pacientes invalida\n");
         return;
     }
 
@@ -410,9 +423,9 @@ void verificarFalta(Paciente *paciente, Paciente *h, int *tam) {
         printf("Paciente %d faltou!\n", paciente->id);
 
         // Reduz a prioridade do paciente
-        paciente->prioridade -= 1; // Exemplo de redu��o de 5 na prioridade
+        paciente->prioridade -= 1; // reduz prioridade caso falte
 
-        // Reorganiza a heap para refletir a mudan�a de prioridade
+        // reorganiza após dimuir a prioridade
         bubble_sort(h, *tam);
     } else {
         printf("Paciente %d compareceu!\n", paciente->id);
@@ -420,7 +433,7 @@ void verificarFalta(Paciente *paciente, Paciente *h, int *tam) {
 }
 
 
-
+//função para ordenar o vetor por prioridade, isso depois de várias tentativas de corrigir o código, tentei usando um vetor
 void bubble_sort(Paciente *h, int tam)
 {
     int trocou;
@@ -447,7 +460,7 @@ void bubble_sort(Paciente *h, int tam)
 
 void remover_paciente(Paciente *pacientes, int *num_pacientes, int index) {
     if (index < 0 || index >= *num_pacientes) {
-        printf("�ndice inv�lido para remo��o.\n");
+        printf("indice invalido para remoção.\n");
         return;
     }
 
@@ -459,7 +472,7 @@ void remover_paciente(Paciente *pacientes, int *num_pacientes, int index) {
         pacientes[i] = pacientes[i + 1];
     }
 
-    // Decrementa o n�mero total de pacientes
+    // Decrementa o numero total de pacientes
     (*num_pacientes)--;
 
     // Ordena os pacientes restantes por prioridade
