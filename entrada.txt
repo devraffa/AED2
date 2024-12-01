@@ -1,0 +1,41 @@
+[Pacientes]
+1 João Cardiologia 80.5 1.75 Aspirina 123456789 Dor_no_peito
+2 Maria neurologia 70.2 1.68 Paracetamol 987654321 Dores_de_cabeça
+3 Pedro Ortopedia 85.0 1.80 Ibuprofeno 456123789 Dor_no_joelho
+4 Ana Pediatria 35.0 1.25 Antitérmico 789456123 Febre_alta
+5 Clara Endocrinologia 65.0 1.60 Alteração_hormonal 123789456 Metformina
+6 Paulo Cardiologia 75.3 1.78 Losartana 234567890 Pressão_alta
+7 Fernanda Neurologia 68.4 1.62 Diazepam 987321654 Ansiedade
+8 Gustavo Ortopedia 90.2 1.85 Naproxeno 654789123 Torção_no_tornozelo
+9 Beatriz Pediatria 28.5 1.10 Xarope 321654987 Resfriado_comum
+10 Lucas Endocrinologia 78.1 1.72 Levotiroxina 123654789 Hipotiroidismo
+11 Carla Cardiologia 82.5 1.70 AAS 456987321 Infarto_anterior
+12 Felipe Neurologia 74.2 1.75 Amitriptilina 789123654 Depressão
+13 Mariana Ortopedia 72.0 1.65 Cetoprofeno 123987654 Luxação_no_ombro
+14 Renata Pediatria 32.0 1.20 Amoxicilina 987456123 Infecção_na_garganta
+15 Thiago Endocrinologia 68.9 1.68 Insulina 456123987 Diabetes_tipo_1
+
+
+
+
+[Medicos]
+1 Dr.Silva Cardiologia
+2 Dr.Souza Neurologia
+3 Dr.Almeida Ortopedia
+4 Dr.Santos Pediatria
+5 Dr.Costa Endocrinologia
+6 Dr.Costa Endocrinologia
+7 Dr.Costa Endocrinologia
+8 Dr.Costa Endocrinologia
+9 Dr.Costa Endocrinologia
+
+[Salas]
+101
+102
+103
+104
+105
+106
+107
+108
+109
