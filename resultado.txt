@@ -1,0 +1,97 @@
+Pacientes:
+ID: 1, Nome: João, Especialidade: Cardiologia, Peso: 80.50, Altura: 1.75, Medica  o: Aspirina, Telefone: 123456789, Sintomas: Dor_no_peito, Prioridade:11
+ID: 2, Nome: Maria, Especialidade: neurologia, Peso: 70.20, Altura: 1.68, Medica  o: Paracetamol, Telefone: 987654321, Sintomas: Dores_de_cabeça, Prioridade:19
+ID: 3, Nome: Pedro, Especialidade: Ortopedia, Peso: 85.00, Altura: 1.80, Medica  o: Ibuprofeno, Telefone: 456123789, Sintomas: Dor_no_joelho, Prioridade:3
+ID: 4, Nome: Ana, Especialidade: Pediatria, Peso: 35.00, Altura: 1.25, Medica  o: Antitérmico, Telefone: 789456123, Sintomas: Febre_alta, Prioridade:3
+ID: 5, Nome: Clara, Especialidade: Endocrinologia, Peso: 65.00, Altura: 1.60, Medica  o: Alteração_hormonal, Telefone: 123789456, Sintomas: Metformina, Prioridade:14
+ID: 6, Nome: Paulo, Especialidade: Cardiologia, Peso: 75.30, Altura: 1.78, Medica  o: Losartana, Telefone: 234567890, Sintomas: Pressão_alta, Prioridade:16
+ID: 7, Nome: Fernanda, Especialidade: Neurologia, Peso: 68.40, Altura: 1.62, Medica  o: Diazepam, Telefone: 987321654, Sintomas: Ansiedade, Prioridade:11
+ID: 8, Nome: Gustavo, Especialidade: Ortopedia, Peso: 90.20, Altura: 1.85, Medica  o: Naproxeno, Telefone: 654789123, Sintomas: Torção_no_tornozelo, Prioridade:2
+ID: 9, Nome: Beatriz, Especialidade: Pediatria, Peso: 28.50, Altura: 1.10, Medica  o: Xarope, Telefone: 321654987, Sintomas: Resfriado_comum, Prioridade:0
+ID: 10, Nome: Lucas, Especialidade: Endocrinologia, Peso: 78.10, Altura: 1.72, Medica  o: Levotiroxina, Telefone: 123654789, Sintomas: Hipotiroidismo, Prioridade:3
+ID: 11, Nome: Carla, Especialidade: Cardiologia, Peso: 82.50, Altura: 1.70, Medica  o: AAS, Telefone: 456987321, Sintomas: Infarto_anterior, Prioridade:12
+ID: 12, Nome: Felipe, Especialidade: Neurologia, Peso: 74.20, Altura: 1.75, Medica  o: Amitriptilina, Telefone: 789123654, Sintomas: Depressão, Prioridade:5
+ID: 13, Nome: Mariana, Especialidade: Ortopedia, Peso: 72.00, Altura: 1.65, Medica  o: Cetoprofeno, Telefone: 123987654, Sintomas: Luxação_no_ombro, Prioridade:0
+ID: 14, Nome: Renata, Especialidade: Pediatria, Peso: 32.00, Altura: 1.20, Medica  o: Amoxicilina, Telefone: 987456123, Sintomas: Infecção_na_garganta, Prioridade:10
+ID: 15, Nome: Thiago, Especialidade: Endocrinologia, Peso: 68.90, Altura: 1.68, Medica  o: Insulina, Telefone: 456123987, Sintomas: Diabetes_tipo_1, Prioridade:5
+
+M dicos:
+ID: 1, Nome: Dr.Silva, Especialidade (ID): Cardiologia, Horas Trabalhadas: 0
+ID: 2, Nome: Dr.Souza, Especialidade (ID): Neurologia, Horas Trabalhadas: 0
+ID: 3, Nome: Dr.Almeida, Especialidade (ID): Ortopedia, Horas Trabalhadas: 0
+ID: 4, Nome: Dr.Santos, Especialidade (ID): Pediatria, Horas Trabalhadas: 0
+ID: 5, Nome: Dr.Costa, Especialidade (ID): Endocrinologia, Horas Trabalhadas: 0
+ID: 6, Nome: Dr.Costa, Especialidade (ID): Endocrinologia, Horas Trabalhadas: 0
+ID: 7, Nome: Dr.Costa, Especialidade (ID): Endocrinologia, Horas Trabalhadas: 0
+ID: 8, Nome: Dr.Costa, Especialidade (ID): Endocrinologia, Horas Trabalhadas: 0
+ID: 9, Nome: Dr.Costa, Especialidade (ID): Endocrinologia, Horas Trabalhadas: 0
+
+Salas:
+ID Sala: 101, Horas Ocupadas: 8
+ID Sala: 102, Horas Ocupadas: 8
+ID Sala: 103, Horas Ocupadas: 8
+ID Sala: 104, Horas Ocupadas: 8
+ID Sala: 105, Horas Ocupadas: 8
+ID Sala: 106, Horas Ocupadas: 8
+ID Sala: 107, Horas Ocupadas: 8
+ID Sala: 108, Horas Ocupadas: 8
+ID Sala: 109, Horas Ocupadas: 8
+
+Salas:
+Fila de pacientes:
+ID: 1, Nome: João, Prioridade: 11
+Paciente 2: Prioridade = 19
+Paciente 6: Prioridade = 16
+Paciente 5: Prioridade = 14
+Paciente 11: Prioridade = 12
+Paciente 1: Prioridade = 11
+Paciente 7: Prioridade = 11
+Paciente 14: Prioridade = 10
+Paciente 12: Prioridade = 5
+Paciente 15: Prioridade = 5
+Paciente 3: Prioridade = 3
+Paciente 4: Prioridade = 3
+Paciente 10: Prioridade = 3
+Paciente 8: Prioridade = 2
+Paciente 9: Prioridade = 0
+Paciente 13: Prioridade = 0
+
+=== Consultas do dia: Segunda-feira ===
+Consulta agendada: Paciente ID: 6, SALA ID: 101, MEDICO ID: 1, HORARIO: 08:00, ESPECIALIDADE: Cardiologia
+Consulta agendada: Paciente ID: 5, SALA ID: 102, MEDICO ID: 5, HORARIO: 08:00, ESPECIALIDADE: Endocrinologia
+Consulta agendada: Paciente ID: 7, SALA ID: 103, MEDICO ID: 2, HORARIO: 08:00, ESPECIALIDADE: Neurologia
+Consulta agendada: Paciente ID: 11, SALA ID: 104, MEDICO ID: 6, HORARIO: 08:00, ESPECIALIDADE: Endocrinologia
+Consulta agendada: Paciente ID: 14, SALA ID: 105, MEDICO ID: 4, HORARIO: 08:00, ESPECIALIDADE: Pediatria
+Consulta agendada: Paciente ID: 15, SALA ID: 106, MEDICO ID: 7, HORARIO: 08:00, ESPECIALIDADE: Endocrinologia
+Consulta agendada: Paciente ID: 10, SALA ID: 107, MEDICO ID: 8, HORARIO: 08:00, ESPECIALIDADE: Endocrinologia
+Consulta agendada: Paciente ID: 12, SALA ID: 108, MEDICO ID: 9, HORARIO: 08:00, ESPECIALIDADE: Endocrinologia
+Consulta agendada: Paciente ID: 3, SALA ID: 109, MEDICO ID: 3, HORARIO: 08:00, ESPECIALIDADE: Ortopedia
+Consulta agendada: Paciente ID: 4, SALA ID: 101, MEDICO ID: 4, HORARIO: 09:00, ESPECIALIDADE: Pediatria
+Consulta agendada: Paciente ID: 2, SALA ID: 102, MEDICO ID: 2, HORARIO: 09:00, ESPECIALIDADE: Neurologia
+
+=== Consultas do dia: Terça-feira ===
+
+=== Consultas do dia: Quarta-feira ===
+
+=== Consultas do dia: Quinta-feira ===
+
+=== Consultas do dia: Sexta-feira ===
+
+=== Consultas do dia: Sábado ===
+
+=== Consultas do dia: Domingo ===
+
+Retornos:
+
+=== Consultas do dia: Quarta-feira ===
+Consulta agendada: Paciente ID: 6, SALA ID: 101, MEDICO ID: 1, HORARIO: 08:00, ESPECIALIDADE: Cardiologia
+Consulta agendada: Paciente ID: 5, SALA ID: 102, MEDICO ID: 5, HORARIO: 08:00, ESPECIALIDADE: Endocrinologia
+Consulta agendada: Paciente ID: 7, SALA ID: 103, MEDICO ID: 2, HORARIO: 08:00, ESPECIALIDADE: Neurologia
+Consulta agendada: Paciente ID: 11, SALA ID: 104, MEDICO ID: 6, HORARIO: 08:00, ESPECIALIDADE: Endocrinologia
+Consulta agendada: Paciente ID: 14, SALA ID: 105, MEDICO ID: 4, HORARIO: 08:00, ESPECIALIDADE: Pediatria
+Consulta agendada: Paciente ID: 15, SALA ID: 106, MEDICO ID: 7, HORARIO: 08:00, ESPECIALIDADE: Endocrinologia
+Consulta agendada: Paciente ID: 10, SALA ID: 107, MEDICO ID: 8, HORARIO: 08:00, ESPECIALIDADE: Endocrinologia
+Consulta agendada: Paciente ID: 12, SALA ID: 108, MEDICO ID: 9, HORARIO: 08:00, ESPECIALIDADE: Endocrinologia
+Consulta agendada: Paciente ID: 3, SALA ID: 109, MEDICO ID: 3, HORARIO: 08:00, ESPECIALIDADE: Ortopedia
+Consulta agendada: Paciente ID: 4, SALA ID: 101, MEDICO ID: 4, HORARIO: 09:00, ESPECIALIDADE: Pediatria
+Consulta agendada: Paciente ID: 2, SALA ID: 102, MEDICO ID: 2, HORARIO: 09:00, ESPECIALIDADE: Neurologia

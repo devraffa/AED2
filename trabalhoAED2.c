@@ -30,6 +30,7 @@ typedef struct
     int id;
     char nome[50];
     char especialidade[50]; // Refer ncia   especialidade
+    int ocup;
     int horas_trabalhadas;
 } Medico;
 
@@ -38,13 +39,16 @@ typedef struct
     int idSala;
     Paciente *paciente;
     Medico *medico;
+    int ocup;
     int horas_ocupadas; // Horas ocupadas na sala
 } Sala;
 
 typedef struct
 {
+    int dia;
     int pacienteId;
     int medicoId;
+    char medicoEsp[50];
     char especialidadePaciente[50];
     char especialidadeMedico[50];
     int salaId;
@@ -59,9 +63,11 @@ typedef struct
     int fim;     //  ndice do pr ximo elemento dispon vel
     int tamanho; // N mero atual de elementos na fila
 } Fila;
-// Calcular prioridade de um paciente
 
-// inicializa uma nova fila
+void bubble_sort(Paciente *h, int tam);
+void trocar(Paciente *a, Paciente *b);
+void print_heap(Paciente *h, int tam);
+
 void inicializarFila(Fila *fila)
 {
     fila->inicio = 0;
@@ -69,19 +75,16 @@ void inicializarFila(Fila *fila)
     fila->tamanho = 0;
 }
 
-//verifica de fila esta vazia ou não
 int filaVazia(Fila *fila)
 {
     return fila->tamanho == 0;
 }
 
-//verifica se a fila esta cheia
 int filaCheia(Fila *fila)
 {
     return fila->tamanho == TAMANHO_FILA;
 }
 
-// adiciona paciente na fila
 void adicionarPaciente(Fila *fila, Paciente paciente)
 {
     if (filaCheia(fila))
@@ -94,7 +97,6 @@ void adicionarPaciente(Fila *fila, Paciente paciente)
     fila->tamanho++;                            // Incrementa o tamanho da fila
 }
 
-// remove pacientes da fila
 int removerPaciente(Fila *fila)
 {
     if (filaVazia(fila))
@@ -127,8 +129,6 @@ void exibirFila(Fila *fila)
     }
 }
 
-
-//função para auxiliar a trocar elementos
 void trocar(Paciente *a, Paciente *b)
 {
     Paciente temp = *a;
@@ -136,7 +136,7 @@ void trocar(Paciente *a, Paciente *b)
     *b = temp;
 }
 
-// Função para ajustar a heap subindo o elemento
+// Fun  o para ajustar a heap subindo o elemento
 void subir_heap(Paciente *h, int i)
 {
     if (i <= 0)
@@ -151,7 +151,21 @@ void subir_heap(Paciente *h, int i)
     }
 }
 
-// Função para ajustar a heap descendo o elemento
+// Função para inserir um paciente na MaxHeap
+void insertHeap(Paciente *heap, int *tam, int id, int prioridade) {
+    if (*tam == TAMANHO_FILA) {
+        printf("Erro: Heap cheia!\n");
+        return;
+    }
+
+    heap[*tam].id = id;
+    heap[*tam].prioridade = prioridade;
+    (*tam)++;
+
+    subir_heap(heap, *tam - 1);
+}
+
+// Fun  o para ajustar a heap descendo o elemento
 void descer_heap(int n, int i, Paciente *h)
 {
     int maior = i;             // Inicializa como raiz
@@ -180,7 +194,6 @@ void descer_heap(int n, int i, Paciente *h)
 
 void remocao_heap(Paciente *h, int *tam)
 {
-
     if (*tam <= 0)
     {
         printf("Heap vazia, nada para remover.\n");
@@ -197,7 +210,6 @@ void remocao_heap(Paciente *h, int *tam)
     descer_heap(*tam, 0, h);
 }
 
-//ufnção para construir a heap
 void construir_heap(Paciente *h, int tam)
 {
     for (int i = 1; i < tam; i++)
@@ -206,8 +218,6 @@ void construir_heap(Paciente *h, int tam)
     }
 }
 
-
-// printar a heap
 void print_heap(Paciente *h, int tam)
 {
     for (int i = 0; i < tam; i++)
@@ -218,9 +228,8 @@ void print_heap(Paciente *h, int tam)
 
 void calcularPrioridade(Paciente *paciente)
 {
-    paciente->prioridade = rand() % 6; // Gera n mero entre 0 e 5
+    paciente->prioridade = rand() % 20; // Gera n mero entre 0 e 5
 }
-
 
 int lerPacientes(FILE *arquivo, Paciente *pacientes, int totalPacientes)
 {
@@ -354,6 +363,7 @@ int lerSalas(FILE *arquivo, Sala *salas, int totalSalas)
         salas[i].horas_ocupadas = 0;
         salas[i].medico = NULL;
         salas[i].paciente = NULL;
+        salas[i].ocup = 0;
     }
 
     rewind(arquivo); // Voltar ao in cio do arquivo
@@ -399,7 +409,7 @@ int lerSalas(FILE *arquivo, Sala *salas, int totalSalas)
     }
 
     // Imprime as salas lidas
-    printf("Salas:\n");
+    printf("\nSalas:\n");
     for (int j = 0; j < i; j++)
     {
         printf("ID Sala: %d, Horas Ocupadas: %d\n", salas[j].idSala, salas[j].horas_ocupadas);
@@ -407,13 +417,11 @@ int lerSalas(FILE *arquivo, Sala *salas, int totalSalas)
     return i;
 }
 
-//função que vai verificar se ocorre as faltas ou não
-
 void verificarFalta(Paciente *paciente, Paciente *h, int *tam) {
-    // Gera um numero entre 1 e 100
+    // Gera um n�mero aleat�rio entre 1 e 100
 
     if (paciente == NULL || h == NULL || *tam <= 0) {
-        printf("Erro: Paciente ou lista de pacientes invalida\n");
+        printf("Erro: Paciente ou lista de pacientes inv�lida.\n");
         return;
     }
 
@@ -423,9 +431,9 @@ void verificarFalta(Paciente *paciente, Paciente *h, int *tam) {
         printf("Paciente %d faltou!\n", paciente->id);
 
         // Reduz a prioridade do paciente
-        paciente->prioridade -= 1; // reduz prioridade caso falte
+        paciente->prioridade -= 1; // Exemplo de redu��o de 5 na prioridade
 
-        // reorganiza após dimuir a prioridade
+        // Reorganiza a heap para refletir a mudan�a de prioridade
         bubble_sort(h, *tam);
     } else {
         printf("Paciente %d compareceu!\n", paciente->id);
@@ -433,7 +441,7 @@ void verificarFalta(Paciente *paciente, Paciente *h, int *tam) {
 }
 
 
-//função para ordenar o vetor por prioridade, isso depois de várias tentativas de corrigir o código, tentei usando um vetor
+
 void bubble_sort(Paciente *h, int tam)
 {
     int trocou;
@@ -460,7 +468,7 @@ void bubble_sort(Paciente *h, int tam)
 
 void remover_paciente(Paciente *pacientes, int *num_pacientes, int index) {
     if (index < 0 || index >= *num_pacientes) {
-        printf("indice invalido para remoção.\n");
+        printf("�ndice inv�lido para remo��o.\n");
         return;
     }
 
@@ -472,7 +480,7 @@ void remover_paciente(Paciente *pacientes, int *num_pacientes, int index) {
         pacientes[i] = pacientes[i + 1];
     }
 
-    // Decrementa o numero total de pacientes
+    // Decrementa o n�mero total de pacientes
     (*num_pacientes)--;
 
     // Ordena os pacientes restantes por prioridade
@@ -488,78 +496,82 @@ void gerar_consulta(Paciente *pacientes, Medico *medicos, Sala *salas, int num_p
 
     int consultas_dia = 0; // Contador de consultas realizadas no dia
 
-    for (int dia = 0; dia < 8; dia++) {
+    Paciente aux;
+    construir_heap(pacientes, num_pacientes);
+    print_heap(pacientes, num_pacientes);
+
+    for (int dia = 0; dia < 7; dia++)
+    {
         printf("\n=== Consultas do dia: %s ===\n", dias_semana[dia]);
-        int hora = 8; // Começa às 08:00 para cada dia
-        consultas_dia = 0;
+        int hora = 8;
 
-        for (int i = 0; i < num_pacientes; i++) {
-            if (*qtd_consultas >= MAX_CONSULTAS || consultas_dia >= 8) {
-                break;
-            }
+        int erro = 0;
+        int sala = 0;
+        while (hora <= 16 && pacientes[1].prioridade != 0)
+        {
+            erro = 0;
+            
+                for (int idM = 0; idM < num_medicos; idM++) {
 
-            int consulta_realizada = 0;
-            for (int sala = 0; sala < num_salas; sala++) {
-                for (int med = 0; med < num_medicos; med++) {
-                    // Verifica disponibilidade e compatibilidade
-                    if (horario_medicos[med][hora][dia] == 0 &&
-                        horario_salas[sala][hora][dia] == 0 &&
-                        strcmp(medicos[med].especialidade, pacientes[i].especialidade) == 0) {
+                if (!medicos[idM].ocup && strcmp(medicos[idM].especialidade, pacientes[0].especialidade) == 0)
+                {
+                    // Cria a consulta
+                    Consulta newConsulta = {
+                        .pacienteId = pacientes[0].id,
+                        .medicoId = medicos[idM].id,
+                        .medicoEsp = "",
+                        .salaId = salas[sala].idSala,
+                        .horario = hora,
+                        .retorno = 30};
 
-                        // Cria a consulta
-                        Consulta newConsulta = {
-                            .pacienteId = pacientes[i].id,
-                            .medicoId = medicos[med].id,
-                            .salaId = salas[sala].idSala,
-                            .horario = hora,
-                            .retorno = 30};
+                    strncpy(newConsulta.medicoEsp, medicos[idM].especialidade, sizeof(newConsulta.medicoEsp) - 1);
 
-                        // Marca horários como ocupados
-                        horario_medicos[med][hora][dia] = 1;
-                        horario_salas[sala][hora][dia] = 1;
+                    // Atualiza consultas
+                    consultas[*qtd_consultas] = newConsulta;
+                    (*qtd_consultas)++;
+                    medicos[idM].horas_trabalhadas++;
 
-                        // Atualiza consultas
-                        consultas[*qtd_consultas] = newConsulta;
-                        (*qtd_consultas)++;
-                        medicos[med].horas_trabalhadas++;
+                    medicos[idM].ocup = 1;
 
-                        printf("Consulta agendada: Paciente ID: %d, SALA ID: %d, MEDICO ID: %d, "
-                               "HORARIO: %02d:00, ESPECIALIDADE: %s\n",
-                               newConsulta.pacienteId, newConsulta.salaId, newConsulta.medicoId,
-                               newConsulta.horario, medicos[med].especialidade);
+                    printf("Consulta agendada: Paciente ID: %d, SALA ID: %d, MEDICO ID: %d, "
+                        "HORARIO: %02d:00, ESPECIALIDADE: %s\n",
+                        newConsulta.pacienteId, newConsulta.salaId, newConsulta.medicoId,
+                        newConsulta.horario, medicos[idM].especialidade);
 
-                        // Adiciona à fila de retorno
-                        adicionarPaciente(filaretorno, pacientes[i]);
+                    sala++;
 
-                        // Remove paciente e reorganiza vetor
-                        for (int j = i; j < num_pacientes - 1; j++) {
-                            pacientes[j] = pacientes[j + 1];
-                        }
-                        num_pacientes--;
-                        bubble_sort(pacientes, num_pacientes);
-
-                        consulta_realizada = 1;
-                        consultas_dia++;
-                        break; // Passa para o próximo paciente
+                    if (sala >= 9) {
+                        sala = 0;
+                        hora++;
+                        for (int idM = 0; idM < num_medicos; idM++) medicos[idM].ocup = 0;
                     }
-                }
-                if (consulta_realizada) break;
-            }
 
-            if (consulta_realizada) {
-                // Incrementa hora após uma consulta
-                hora++;
-                if (hora >= 17) {
-                    break; // Termina o dia
+                    remocao_heap(pacientes, &num_pacientes);
+                    break;
+                }
+                if (num_medicos - 1 == idM && num_pacientes > 0 && pacientes[1].prioridade != 0)
+                {
+                    aux = pacientes[0];
+                    aux.prioridade = pacientes[1].prioridade - 1;
+                    insertHeap(pacientes, &num_pacientes, aux.id, aux.prioridade);
+                    remocao_heap(pacientes, &num_pacientes);
                 }
             }
-        }
-
-        if (num_pacientes == 0) {
-            printf("Todos os pacientes foram atendidos.\n");
-            break;
-        }
+        }  
     }
+
+    printf("\nRetornos:\n");
+    int mud = 0;
+
+    printf("\n=== Consultas do dia: %s ===\n", dias_semana[(consultas[0].retorno + consultas[0].dia) % 7]);
+    for (int i = 0; i < *qtd_consultas; i++)
+    {
+        printf("Consulta agendada: Paciente ID: %d, SALA ID: %d, MEDICO ID: %d, "
+                        "HORARIO: %02d:00, ESPECIALIDADE: %s\n",
+                        consultas[i].pacienteId, consultas[i].salaId, consultas[i].medicoId,
+                        consultas[i].horario, consultas[i].medicoEsp);
+    }
+    
 }
 
 
@@ -567,6 +579,13 @@ void gerar_consulta(Paciente *pacientes, Medico *medicos, Sala *salas, int num_p
 int main()
 {
     srand(time(NULL));
+
+    // Criar ou abrir o arquivo para salvar a saída
+    FILE *resultado = fopen("resultado.txt", "w");
+    if (!resultado) return perror("Erro ao criar arquivo"), 1;
+
+    // Redirecionar stdout para o arquivo
+    freopen("resultado.txt", "w", stdout);
 
     Medico medicos[MAX_MEDICOS];
     Sala salas[MAX_SALAS];
@@ -587,7 +606,7 @@ int main()
 
     // Imprimir pacientes
     printf("Pacientes:\n");
-    for (int i = 0; i < MAX_PACIENTE; i++)
+    for (int i = 0; i < numPacientes; i++)
     {
         if (pacientes[i].id == 0)
         {
@@ -604,7 +623,7 @@ int main()
 
     // Imprimir m dicos
     printf("\nM dicos:\n");
-    for (int i = 0; i < MAX_MEDICOS; i++)
+    for (int i = 0; i < numMedicos; i++)
     {
         if (medicos[i].id == 0)
         {
@@ -613,6 +632,8 @@ int main()
         printf("ID: %d, Nome: %s, Especialidade (ID): %s, Horas Trabalhadas: %d\n",
                medicos[i].id, medicos[i].nome, medicos[i].especialidade,
                medicos[i].horas_trabalhadas);
+
+        medicos[i].ocup = 0;
     }
 
     // Ler as salas do arquivo
@@ -631,29 +652,6 @@ int main()
 
     bubble_sort(pacientes, numPacientes);
     gerar_consulta(pacientes, medicos, salas, numPacientes, numSalas, numMedicos, consulta, &qtd_consultas, &filaPacientes);
-
-    printf("\nPacientes ap s ordena  o por prioridade:\n");
-    for (int i = 0; i < numPacientes; i++)
-    {
-        printf("ID: %d, Nome: %s, Prioridade: %d\n", pacientes[i].id, pacientes[i].nome, pacientes[i].prioridade);
-    }
-
-    // Exemplo de remo  o de paciente
-    printf("\nRemovendo paciente com ID 2:\n");
-    for (int i = 0; i < numPacientes; i++)
-    {
-        if (pacientes[i].id == 2)
-        {
-            remover_paciente(pacientes, &numPacientes, i);
-            break;
-        }
-    }
-
-    printf("\nPacientes restantes ap s remo  o:\n");
-    for (int i = 0; i < numPacientes; i++)
-    {
-        printf("ID: %d, Nome: %s, Prioridade: %d\n", pacientes[i].id, pacientes[i].nome, pacientes[i].prioridade);
-    }
 
     fclose(arquivo);
 
